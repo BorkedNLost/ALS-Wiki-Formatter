@@ -17,4 +17,4 @@ Double-click `index.html`. It runs entirely in your browser and does not need in
 
 The form automatically calculates the displayed stat ranges, deployment cost, total cost, AoE progression, and overall status effects. Work is saved automatically in the browser.
 
-Status-effect mappings: Burn → `burn = "yes"`, Bleed → `bleed = "yes"`, Freeze → `freeze = "yes"`, Slow → `slow = "yes"`, Crippled → `crippled = "yes"`, and Hex → `hex = "yes"`.
+Status-effect mappings: Burn → `burn = "yes"`, Bleed → `bleed = "yes"`, Black Flames → `blackflames = "yes"`, Poison → `poison = "yes"`, Electrified → `electrified = "yes"`, Freeze → `freeze = "yes"`, Slow → `slow = "yes"`, Crippled → `crippled = "yes"`, and Hex → `hex = "yes"`.

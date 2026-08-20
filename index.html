@@ -1,34 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ALS Wiki Unit Entry Builder</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header><div><p class="eyebrow">ANIME LAST STAND · WIKI STAFF TOOL</p><h1>Unit Entry Builder</h1><p>Fill in the unit, add its upgrades, then copy ready-to-paste Lua.</p></div><div class="header-actions"><button id="example" class="secondary">Load example</button><button id="clear" class="danger">Clear</button></div></header>
-  <main>
-    <section class="editor">
-      <article class="card"><h2>Unit information</h2><div class="grid">
-        <label class="wide">Unit name<input id="unitName" placeholder="e.g. Berserker"></label>
-        <label>Rarity<select id="rarity"><option>Rare</option><option>Epic</option><option>Legendary</option><option selected>Mythic</option><option>Celestial</option><option>Secret</option><option>Exotic</option></select></label>
-        <label>Element<select id="element"><option>Water</option><option>Fire</option><option>Nature</option><option>Light</option><option>Dark</option></select></label>
-        <label>Subtype<select id="subtype"><option>Physical</option><option>Magical</option></select></label>
-        <label>Tower type<select id="towerType"><option>Ground</option><option>Hill</option></select></label>
-        <label>Max placement<input id="placement" type="number" min="1" value="4"></label>
-        <label>Image filename<input id="image" placeholder="Berserker-FB"></label>
-        <label class="wide">Image caption<input id="caption" placeholder="Character quote"></label>
-        <label class="wide">Overview<textarea id="overview" rows="3" placeholder="'''Unit''' is a {{Rarity|Mythic}} unit..."></textarea></label>
-      </div></article>
-      <article class="card"><div class="section-head"><div><h2>Upgrades</h2><p>Deployment is the first row, then Upgrade 1 onwards. Status effects are chosen separately for every row.</p></div><button id="addUpgrade">+ Add upgrade</button></div><div id="upgrades"></div></article>
-      <article class="card"><div class="section-head"><div><h2>Passives</h2><p>Optional. Add as many as needed.</p></div><button id="addPassive" class="secondary">+ Add passive</button></div><div id="passives"></div></article>
-      <article class="card"><h2>Active ability <span class="optional">optional</span></h2><div class="grid"><label>Name<input id="abilityName"></label><label>Unlock upgrade<input id="abilityUpgrade" type="number" min="0"></label><label>Cooldown (seconds)<input id="abilityCooldown" type="number" min="0"></label><label class="wide">Description<textarea id="ability" rows="3"></textarea></label></div></article>
-    </section>
-    <aside class="output"><article class="card sticky"><div class="section-head"><div><h2>Generated Lua</h2><p id="summary">Start with a unit name.</p></div><div><button id="copy">Copy Lua</button><button id="download" class="secondary">Download .lua</button></div></div><div id="warnings"></div><pre id="lua"></pre></article></aside>
-  </main>
-  <template id="upgradeTemplate"><div class="upgrade"><div class="upgrade-head"><h3 class="upgrade-title">Deployment</h3><div><button class="copy-effects ghost" type="button">Copy previous effects</button><button class="remove ghost danger-text" type="button">Remove</button></div></div><div class="upgrade-grid"><label>Cost<input data-key="cost" type="number" min="0"></label><label>Damage<input data-key="damage" type="number" min="0" step="any"></label><label>Range<input data-key="range" type="number" min="0" step="any"></label><label>SPA<input data-key="spa" type="number" min="0" step="any"></label><label>AoE / attack type<input data-key="attack" placeholder="AoE (Circle)"></label><label>Upgrade text<input data-key="text" placeholder="+ Fire Cannon"></label></div><fieldset><legend>Status effects for this row</legend><div class="checks"></div></fieldset><label class="check hybrid-check"><input type="checkbox" data-hybrid> Turns hybrid <span>(adds + Hybrid)</span></label></div></template>
-  <template id="passiveTemplate"><div class="passive"><div class="upgrade-head"><h3>Passive</h3><button class="remove-passive ghost danger-text">Remove</button></div><div class="grid"><label>Name<input data-key="name"></label><label>Unlock upgrade<input data-key="upgrade" type="number" min="0"></label><label class="wide">Description<textarea data-key="description" rows="2"></textarea></label></div></div></template>
-  <script src="script.js"></script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ALS Unit Template</title><link rel="stylesheet" href="style.css"></head><body>
+<header><h1>ALS Unit Template</h1><p>Build a paste-ready InfoUnitData unit block.</p></header><main><section class="card"><h2>Unit information</h2><div class="grid">
+<label>Unit name<input id="name" placeholder="Berserker"></label><label>Rarity<select id="rarity"><option>Rare</option><option>Epic</option><option>Legendary</option><option selected>Mythic</option><option>Celestial</option><option>Secret</option><option>Exotic</option></select></label>
+<label>Element<input id="element" placeholder="Dark"></label><label>Subtype<select id="subtype"><option>Physical</option><option>Magical</option></select></label><label>Tower type<select id="tower"><option>Ground</option><option>Hill</option><option>Hybrid</option></select></label><label>Max placement<input id="placement" type="number" min="1" value="4"></label><label>Image name<input id="image" placeholder="Berserker-FB"></label><label>Quote<input id="caption"></label><label class="wide">Overview<textarea id="overview"></textarea></label></div>
+<h2>Upgrades</h2><div id="upgrades"></div><button id="add" type="button">+ Add upgrade</button></section>
+<section class="card output"><div class="bar"><h2>Lua output</h2><button id="example" type="button">Example</button><button id="copy" type="button">Copy Lua</button><button id="download" type="button">Download .lua</button></div><div id="warnings"></div><pre id="output"></pre></section></main><template id="upgrade"><article class="upgrade"><div class="bar"><strong>Upgrade <span class="num"></span></strong><button class="remove" type="button">Remove</button></div><div class="grid"><label>Cost<input data-k="cost" type="number" min="0"></label><label>Damage<input data-k="damage" type="number" min="0" step="any"></label><label>Range<input data-k="range" type="number" min="0" step="any"></label><label>SPA<input data-k="spa" type="number" min="0" step="any"></label><label>Attack type<input data-k="attack" placeholder="AoE (Cone)"></label><label>Ability / change text<input data-k="text"></label></div><fieldset><legend>Status effects</legend><label><input type="checkbox" data-effect="burn"> Burn</label><label><input type="checkbox" data-effect="bleed"> Bleed</label><label><input type="checkbox" data-effect="freeze"> Freeze</label><label><input type="checkbox" data-effect="slow"> Slow</label><label><input type="checkbox" data-effect="crippled"> Crippled</label><label><input type="checkbox" data-effect="hex"> Hex</label></fieldset></article></template><script src="script.js"></script></body></html>

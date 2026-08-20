@@ -1,20 +1,13 @@
-# ALS Wiki Unit Entry Builder
+# ALS Unit Template
 
-A local, staff-friendly form for generating `Module:InfoUnitData` Lua entries for the Anime Last Stand wiki.
+Open `index.html` in a web browser. Fill in the unit details and upgrades, then use **Copy Lua** or **Download .lua**.
 
-## Open it
+The generated text is one paste-ready unit entry only:
 
-Double-click `index.html`. It runs entirely in your browser and does not need installation or an internet connection.
+```lua
+["Unit Name"] = {
+    -- unit fields
+},
+```
 
-## Use it
-
-1. Enter the unit information.
-2. Fill in Deployment, then add Upgrade 1 and the remaining upgrades.
-3. Tick status effects separately for each row. “Copy previous effects” carries effects forward only when they continue.
-4. Tick **Turns hybrid** on the row where the unit becomes hybrid; it adds `+ Hybrid` to that upgrade note.
-5. Add optional passives and an active ability.
-5. Review any warnings, then use **Copy Lua** or **Download .lua**.
-
-The form automatically calculates the displayed stat ranges, deployment cost, total cost, AoE progression, and overall status effects. Work is saved automatically in the browser.
-
-Status-effect mappings: Burn → `burn = "yes"`, Bleed → `bleed = "yes"`, Black Flames → `blackflames = "yes"`, Poison → `poison = "yes"`, Electrified → `electrified = "yes"`, Freeze → `freeze = "yes"`, Slow → `slow = "yes"`, Crippled → `crippled = "yes"`, and Hex → `hex = "yes"`.
+It intentionally does **not** add a `return {` wrapper or an extra closing table brace. Form data is autosaved in the browser.

@@ -1,13 +1,6 @@
 # ALS Unit Template
 
-Open `index.html` in a web browser. Fill in the unit details and upgrades, then use **Copy Lua** or **Download .lua**.
+Open `index.html` in a browser. The form autosaves locally and generates one paste-ready `InfoUnitData` entry.
 
-The generated text is one paste-ready unit entry only:
+The output starts with `["Unit Name"] = {` and ends with `},`. It deliberately does not include an outer `return { ... }` wrapper.
 
-```lua
-["Unit Name"] = {
-    -- unit fields
-},
-```
-
-It intentionally does **not** add a `return {` wrapper or an extra closing table brace. Form data is autosaved in the browser.
